@@ -425,8 +425,14 @@ export var tns = function(options) {
         panStart = false,
         rafIndex,
         getDist = horizontal ?
-          function(b, a) { return a.y - b.y; } :
+          function(a, b) { return a.x - b.x; } :
           function(a, b) { return a.y - b.y; };
+
+    if (!location.search.match('\\?=dev')) {
+      getDist = horizontal ?
+        function(b, a) { return a.y - b.y; } :
+        function(a, b) { return a.y - b.y; };
+    }
   }
   
   // disable slider when slidecount <= items
