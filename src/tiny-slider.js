@@ -424,8 +424,8 @@ export var tns = function(options) {
         disY,
         panStart = false,
         rafIndex,
-        getDist = horizontal ? 
-          function(a, b) { return a.x - b.x; } :
+        getDist = horizontal ?
+          function(b, a) { return a.y - b.y; } :
           function(a, b) { return a.y - b.y; };
   }
   
