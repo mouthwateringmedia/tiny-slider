@@ -428,7 +428,7 @@ export var tns = function(options) {
           function(a, b) { return a.x - b.x; } :
           function(a, b) { return a.y - b.y; };
 
-    if (!location.search.match('\\?=dev')) {
+    if (window.is_page_rotated) {
       getDist = horizontal ?
         function(b, a) { return a.y - b.y; } :
         function(a, b) { return a.y - b.y; };

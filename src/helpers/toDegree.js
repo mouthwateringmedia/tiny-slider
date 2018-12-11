@@ -1,7 +1,8 @@
 export function toDegree (x, y) {
-if (location.search.match('\\?=dev')) {
+if (window.is_page_rotated) {
+    var old_y = y;
     y = x;
-    x = y;
+    x = 1080 - old_y;
   }
   return Math.atan2(y, x) * (180 / Math.PI);
 }
