@@ -1,5 +1,5 @@
-export function toDegree (x, y) {
-if (window.is_page_rotated) {
+export function toDegree (y, x) {
+  if (window.is_page_rotated) {
     var old_y = y;
     y = x;
     x = 1080 - old_y;
