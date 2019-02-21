@@ -539,7 +539,11 @@ export var tns = function(options) {
     var div = doc.createElement('div'), rect, width;
     el.appendChild(div);
     rect = div.getBoundingClientRect();
-    width = rect.right - rect.left;
+    if (window.is_page_rotated) {
+        width = rect.bottom - rect.top;
+    } else {
+        width = rect.right - rect.left;
+    }
     div.remove();
     return width || getClientWidth(el.parentNode);
   }
@@ -1903,10 +1907,15 @@ export var tns = function(options) {
   // (init) => slidePositions
   function setSlidePositions () {
     slidePositions = [0];
-    var attr = horizontal ? 'left' : 'top',
-        attr2 = horizontal ? 'right' : 'bottom',
-        base = slideItems[0].getBoundingClientRect()[attr];
-
+    var attr, attr2;    
+    if (window.is_page_rotated) {
+        attr = horizontal ? 'top' : 'left';
+        attr2 = horizontal ? 'bottom' : 'right';
+    } else {
+        attr = horizontal ? 'left' : 'top';
+        attr2 = horizontal ? 'right' : 'bottom';
+    }
+    var base = slideItems[0].getBoundingClientRect()[attr];
     forEach(slideItems, function(item, i) {
       // skip the first slide
       if (i) { slidePositions.push(item.getBoundingClientRect()[attr] - base); }
